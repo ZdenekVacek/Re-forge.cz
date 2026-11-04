@@ -6,13 +6,15 @@
     <title>Re-forge | Zdeněk Vacek</title>
     <style>
         :root {
-            --color-dark-green: #142b24; 
-            --color-copper: #b87333;     
-            --color-bg-white: #ffffff;
-            --color-bg-gray: #f9f9f9;
-            --color-text-main: #333333;
-            --color-text-light: #555555;
-            --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --color-forest: #142b24;   /* Hluboká lesní zeleň z loga */
+            --color-copper: #b87333;   /* Kovářská měď z loga */
+            --color-copper-hover: #9c5f28;
+            --color-bg-page: #fafaf8;  /* Teplý přírodní podklad */
+            --color-card-bg: #ffffff;
+            --color-text-dark: #1a2420;
+            --color-text-muted: #4a5752;
+            --color-border: #e3e7e4;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
 
         * {
@@ -22,16 +24,17 @@
         }
 
         body {
-            font-family: var(--font-main);
-            background-color: var(--color-bg-white);
-            color: var(--color-text-main);
-            line-height: 1.6;
-            font-size: 17px;
+            font-family: var(--font-stack);
+            background-color: var(--color-bg-page);
+            color: var(--color-text-dark);
+            line-height: 1.65;
+            font-size: 18px;
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
+            color: var(--color-forest);
             text-decoration: none;
-            color: var(--color-dark-green);
             transition: color 0.2s ease;
         }
 
@@ -40,305 +43,432 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1040px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         /* Navigace */
         nav {
-            background-color: var(--color-bg-white);
-            border-bottom: 1px solid #eeeeee;
+            background-color: var(--color-card-bg);
+            border-bottom: 1px solid var(--color-border);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
-        .nav-container {
+        .nav-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 76px;
         }
 
-        .logo {
-            display: flex;
+        /* Logo v jedné úrovni */
+        .logo-box {
+            display: inline-flex;
             align-items: center;
             gap: 12px;
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--color-dark-green);
+            text-decoration: none;
         }
 
-        .logo svg {
+        .logo-icon {
             width: 32px;
             height: 32px;
             display: block;
+            flex-shrink: 0;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-forest);
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin: 0;
         }
 
-        .nav-links a {
-            font-weight: 500;
-            color: var(--color-text-main);
-        }
-
-        .nav-links a:hover {
-            color: var(--color-copper);
-        }
-
-        .nav-cta {
-            background-color: var(--color-dark-green);
+        .nav-contact-btn {
+            display: inline-block;
+            background-color: var(--color-forest);
             color: #ffffff !important;
-            padding: 10px 20px;
+            padding: 9px 18px;
             border-radius: 4px;
+            font-size: 15px;
             font-weight: 600;
+            transition: background-color 0.2s ease;
         }
 
-        .nav-cta:hover {
-            background-color: #0e201a;
+        .nav-contact-btn:hover {
+            background-color: var(--color-copper);
         }
 
-        /* Tlačítka */
+        /* Hero sekce */
+        .hero {
+            padding: 100px 0 70px;
+        }
+
+        .hero-statement {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.25;
+            color: var(--color-forest);
+            margin-bottom: 30px;
+            letter-spacing: -0.02em;
+            max-width: 900px;
+        }
+
+        .hero-lead {
+            font-size: 22px;
+            line-height: 1.5;
+            color: var(--color-text-muted);
+            max-width: 820px;
+            margin-bottom: 35px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
         .btn {
             display: inline-block;
-            padding: 14px 28px;
+            padding: 13px 26px;
             border-radius: 4px;
             font-size: 17px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
-            text-align: center;
-            border: none;
         }
 
-        .btn-primary {
-            background-color: var(--color-dark-green);
+        .btn-copper {
+            background-color: var(--color-copper);
             color: #ffffff !important;
         }
 
-        .btn-primary:hover {
-            background-color: #0e201a;
+        .btn-copper:hover {
+            background-color: var(--color-copper-hover);
         }
 
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--color-text-main);
-            border: 1px solid #cccccc;
+        .btn-outline {
+            border: 1px solid var(--color-border);
+            color: var(--color-text-dark);
+            background: transparent;
         }
 
-        .btn-secondary:hover {
-            border-color: var(--color-dark-green);
-            color: var(--color-dark-green);
+        .btn-outline:hover {
+            border-color: var(--color-forest);
+            color: var(--color-forest);
         }
 
-        /* Společné styly sekcí */
+        /* Sekce */
         section {
-            padding: 90px 0;
+            padding: 80px 0;
+            border-top: 1px solid var(--color-border);
         }
 
-        .bg-gray {
-            background-color: var(--color-bg-gray);
-        }
-
-        h1, h2, h3 {
-            color: var(--color-text-main);
+        .section-title {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--color-forest);
+            margin-bottom: 24px;
             line-height: 1.3;
         }
 
-        h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-
-        /* Hero */
-        .hero {
-            padding: 100px 0;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            max-width: 800px;
-            margin-bottom: 25px;
-            color: var(--color-dark-green);
-        }
-
-        .hero p {
-            font-size: 20px;
-            max-width: 700px;
-            margin-bottom: 40px;
-            color: var(--color-text-light);
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
-        /* Mřížky */
-        .grid-2 {
+        /* Dva sloupce / Realita */
+        .split-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 50px;
+        }
+
+        .text-block p {
+            margin-bottom: 18px;
+            color: var(--color-text-muted);
+        }
+
+        .highlight-quote {
+            font-size: 21px;
+            line-height: 1.45;
+            font-weight: 600;
+            color: var(--color-forest);
+            border-left: 3px solid var(--color-copper);
+            padding-left: 20px;
+            margin: 25px 0;
+        }
+
+        /* 3 věci, co dělám */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 30px;
+        }
+
+        .work-card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-top: 4px solid var(--color-forest);
+            border-radius: 4px;
+            padding: 30px 24px;
+        }
+
+        .work-card h3 {
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--color-forest);
+            margin-bottom: 14px;
+            line-height: 1.35;
+        }
+
+        .work-card p {
+            color: var(--color-text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* O mně */
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 50px;
             align-items: start;
         }
 
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-
-        /* Filozofie & O mně */
-        .text-block p {
-            margin-bottom: 15px;
-            color: var(--color-text-light);
-        }
-
-        .text-block ul {
-            margin-left: 20px;
-            margin-bottom: 20px;
-            color: var(--color-text-light);
-        }
-
-        .text-block li {
-            margin-bottom: 8px;
-        }
-
-        .photo-placeholder {
-            width: 100%;
-            aspect-ratio: 1;
-            background-color: #eaeaea;
+        .bio-photo-box {
+            background-color: #e8ece9;
             border-radius: 4px;
+            aspect-ratio: 4/5;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #999999;
-        }
-
-        /* Služby */
-        .service-card {
-            background: var(--color-bg-white);
-            padding: 30px;
-            border-radius: 4px;
-            border-left: 4px solid var(--color-copper);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-        }
-
-        .service-card h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
-
-        .service-card p {
-            color: var(--color-text-light);
-        }
-
-        /* Kroky */
-        .step {
-            padding: 20px 0;
-        }
-
-        .step-number {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: var(--color-dark-green);
-            color: white;
-            border-radius: 50%;
+            color: #7b8a84;
+            font-size: 15px;
             text-align: center;
-            line-height: 40px;
-            font-weight: bold;
+            padding: 20px;
+            border: 1px solid var(--color-border);
+        }
+
+        .bio-content p {
+            margin-bottom: 16px;
+            color: var(--color-text-muted);
+        }
+
+        /* Spodní cíl a upřímnost */
+        .vision-box {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .vision-box h3 {
+            font-size: 22px;
+            color: var(--color-forest);
             margin-bottom: 15px;
         }
 
-        .step h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .step p {
-            color: var(--color-text-light);
-        }
-
-        /* Patička */
+        /* Patička a kontakt */
         footer {
-            background-color: #111111;
+            background-color: var(--color-forest);
             color: #ffffff;
-            padding: 70px 0 40px;
-        }
-
-        footer h2 {
-            color: #ffffff;
+            padding: 70px 0 35px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 60px;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
         }
 
-        .contact-info p {
+        .footer-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 14px;
+        }
+
+        .footer-desc {
+            color: #a7bbb3;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .contact-details p {
             margin-bottom: 10px;
-            font-size: 18px;
+            font-size: 17px;
         }
 
-        .contact-info a {
+        .contact-details a {
             color: var(--color-copper);
+            font-size: 19px;
+            font-weight: 700;
             display: block;
-            font-size: 18px;
             margin-bottom: 8px;
         }
 
-        .contact-info a:hover {
+        .contact-details a:hover {
             color: #ffffff;
         }
 
-        .copyright {
+        .footer-bottom {
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid #333333;
             font-size: 14px;
-            color: #888888;
+            color: #7d968e;
         }
 
-        @media (max-width: 900px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 36px; }
-            .grid-2, .grid-3, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-            .hero-buttons { flex-direction: column; }
-            .hero-buttons .btn { width: 100%; }
+        /* Mobilní verze */
+        @media (max-width: 860px) {
+            .hero-statement { font-size: 32px; }
+            .hero-lead { font-size: 19px; }
+            .split-grid, .work-grid, .bio-grid, .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            .bio-photo-box {
+                max-width: 240px;
+                margin: 0 auto;
+            }
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn { text-align: center; }
         }
     </style>
 </head>
 <body>
 
+    <!-- NAVIGACE -->
     <nav>
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="19,0 0,40 19,40" fill="#142b24"/>
-                    <polygon points="21,0 21,40 40,40" fill="#b87333"/>
+        <div class="container nav-inner">
+            <a href="#" class="logo-box">
+                <!-- Vektorové logo sestavené dle zadání -->
+                <svg viewBox="0 0 32 32" class="logo-icon" aria-hidden="true">
+                    <polygon points="15,2 1,30 15,30" fill="#142b24"/>
+                    <polygon points="17,2 17,30 31,30" fill="#b87333"/>
                 </svg>
-                <span>Re-forge</span>
+                <span class="logo-text">Re-forge</span>
             </a>
-            <div class="nav-links">
-                <a href="#o-cem-to-je">O čem to je</a>
-                <a href="#s-cim-pomaham">S čím pomáhám</a>
-                <a href="#kdo-jsem">Kdo jsem</a>
-            </div>
-            <a href="tel:732567560" class="btn nav-cta">732 567 560</a>
+            <a href="tel:732567560" class="nav-contact-btn">Zavolat: 732 567 560</a>
         </div>
     </nav>
 
-    <header class="hero">
+    <!-- HLAVNÍ OSOBNÍ ÚVOD -->
+    <main>
+        <div class="hero">
+            <div class="container">
+                <h1 class="hero-statement">
+                    Všichni mají nejlepší produkty, služby a přesně vědí, co nejvíc potřebujete. Už mě přestalo bavit se na to dívat.
+                </h1>
+                <p class="hero-lead">
+                    Ne všechno na trhu je špatné a nikdo samozřejmě nebude říkat, že prodává věc, kterou nepotřebujete. Ale firmy se topí v nástrojích a volbách, které jim život neulehčují. Ani AI nás nezachrání. Vždycky to je a bude o člověku – jinak by to celé ani nemělo smysl.
+                </p>
+                <div class="hero-actions">
+                    <a href="#kontakt" class="btn btn-copper">Pojďme se potkat</a>
+                    <a href="#kdo-jsem" class="btn btn-outline">Kdo za tím stojí</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- O MNĚ A ZKUŠENOSTECH Z CHYB -->
+        <section id="kdo-jsem">
+            <div class="container">
+                <div class="bio-grid">
+                    <div class="bio-photo-box">
+                        <span>[ Vaše civilní fotografie ]</span>
+                    </div>
+                    <div class="bio-content text-block">
+                        <h2 class="section-title">Zdeněk Vacek</h2>
+                        <p><strong>Jsem člověk, křesťan, podnikatel a milující manžel velké rodiny se šesti dětmi.</strong></p>
+                        <p>
+                            Mám zkušenosti z reálného podnikání, z rozjíždění projektů od nuly, budování i vedení firem. Umím sehnat investora a jednat s ním. Pohyboval jsem se také v nezisku a sociálním podnikání.
+                        </p>
+                        <div class="highlight-quote">
+                            „Ale hlavně jsem udělal spoustu chyb, špatných rozhodnutí, nebo jsem neudělal nic tam, kde jsem jednat měl.“
+                        </div>
+                        <p>
+                            Právě proto dnes nemám potřebu hrát si na neomylného experta s nacvičenými poučkami. Vím, jaké to je nést odpovědnost za lidi, za rodinu a za peníze. Vím, jak bolí špatné rozhodnutí i promarněný čas. A přesně to je zkušenost, kterou vám mohu nabídnout.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CO DOOPRAVDY DĚLÁM -->
+        <section id="co-delam">
+            <div class="container">
+                <h2 class="section-title">Tohle je vlastně to, co nejvíce dělám a co opravdu přináší výsledky</h2>
+                <p style="color: var(--color-text-muted); max-width: 800px; margin-bottom: 20px;">
+                    Stále více lidí ve firmách nechce trávit týdny výběrem technologií, nebo jednoduše neví, co je dnes možné a co je jen slepá ulička. Moje práce spočívá v jednoduchých, ale zásadních věcech:
+                </p>
+
+                <div class="work-grid">
+                    
+                    <div class="work-card">
+                        <h3>Nastavení firmy, která bude mít šanci na přežití</h3>
+                        <p>
+                            Sedneme si spolu a podíváme se pravdě do očí. Pomohu vám vyřešit krizové situace, postavit základy fungování firmy nebo připravit jednání s investory. Bez přikrášlování pojmenujeme, co funguje a co je potřeba okamžitě zastavit.
+                        </p>
+                    </div>
+
+                    <div class="work-card">
+                        <h3>Vybrat technologii, která opravdu usnadní život</h3>
+                        <p>
+                            Od softwaru po hardware. Žádné drahé zbytečnosti jen proto, že jsou moderní. Vybereme pouze takové nástroje a systémy, které vám a vašim lidem reálně ušetří čas, uleví od rutiny a zaplatí se.
+                        </p>
+                    </div>
+
+                    <div class="work-card">
+                        <h3>Výběr dodavatele a lidí, kteří řešení nasadí</h3>
+                        <p>
+                            Najít technologii nestačí, někdo ji musí uvést do praxe. Propojím vás s prověřenými lidmi a partnery, za kterými stojí odvedená práce. Dohlédnu na to, aby nasazené řešení skutečně pomohlo a nezůstalo napůl cesty.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- VIZE TECHNOLOGICKÉHO HUBU A UPŘÍMNOST -->
+                <div class="vision-box">
+                    <h3>Upřímně a na rovinu</h3>
+                    <p style="color: var(--color-text-muted); margin-bottom: 14px;">
+                        Ani já to nebudu dělat za pěkně děkuji. Můj cíl je ale vybudovat firmu, která bude hlavně pomáhat, která bude hodnotově nastavená, lidská a upřímná.
+                    </p>
+                    <p style="color: var(--color-text-muted);">
+                        Chci propojovat zákazníky a prověřené partnery, kde se postupně budeme spojovat, až vznikne technologický hub. Místo, které sdružuje podobně smýšlející odborníky a spokojené zákazníky, kterým řešíme jejich skutečné potřeby – ať už jde o velké i malé projekty, řešení krizí, stavění firem nebo vstup investorů.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- KONTAKTNÍ PATIČKA -->
+    <footer id="kontakt">
         <div class="container">
-            <h1>Vracím firmám zdravý rozum a lidský přístup.</h1>
-            <p>Pomáhám majitelům firem srovnat věci, které přestaly fungovat. Vybírám technologie, které práci usnadní, a propojuji lidi, kterým se dá věřit. Bez zbytečností a na rovinu.</p>
-            <div class="hero-buttons">
-                <a href="#kontakt" class="btn btn-primary">Ozvěte se mi</a>
-                <a href="#o
+            <div class="footer-grid">
+                <div>
+                    <h2 class="footer-title">Potřebujete se poradit nebo srovnat situaci ve firmě?</h2>
+                    <p class="footer-desc">
+                        Nemusíte na to být sami. Ozvěte se mi, zavolejte nebo napište e-mail. Rád se potkám u kávy a probereme, co zrovna řešíte.
+                    </p>
+                </div>
+                <div class="contact-details">
+                    <p><strong>Zdeněk Vacek</strong></p>
+                    <a href="tel:732567560">+420 732 567 560</a>
+                    <a href="mailto:kontakt@zdenekvacek.cz">kontakt@zdenekvacek.cz</a>
+                    <p style="color: #9db1a9; font-size: 15px; margin-top: 15px;">IČO: 14116910</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Re-forge &bull; Zdeněk Vacek. Všechna práva vyhrazena.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
