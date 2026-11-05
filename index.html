@@ -1,1 +1,283 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10251f">
+  <meta name="description" content="Re-forge. Praktická pomoc při podnikání, důležitých rozhodnutích a hledání řešení.">
+  <link rel="canonical" href="https://reforge.cz/">
+  <title>Re-forge — Pomoc, která má smysl</title>
+  <style>
+    :root {
+      --forest: #10251f;
+      --forest-soft: #18372e;
+      --copper: #bd793b;
+      --paper: #f5f5f3;
+      --white: #fff;
+      --ink: #17251f;
+      --muted: #68736d;
+      --line: #dfe3df;
+      --max: 1160px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 48px)); margin-inline: auto; }
+    .topbar {
+      height: 88px; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(16,37,31,.10);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 13px; text-decoration: none; }
+    .mark { width: 34px; height: 39px; display: block; }
+    .brand-name { font-size: 19px; letter-spacing: -.045em; font-weight: 650; }
+    nav { display: flex; gap: 30px; align-items: center; }
+    nav a { font-size: 13px; color: #526159; text-decoration: none; }
+    nav a:hover { color: var(--copper); }
+    .nav-contact {
+      border: 1px solid var(--forest); border-radius: 3px; padding: 10px 16px;
+      color: var(--forest); transition: .2s ease;
+    }
+    .nav-contact:hover { background: var(--forest); color: white; }
+    .hero {
+      min-height: 650px; display: grid; grid-template-columns: 1.1fr .9fr;
+      align-items: center; gap: 60px; padding-block: 90px 100px;
+    }
+    .eyebrow {
+      display: flex; align-items: center; gap: 12px; color: var(--copper);
+      font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+      margin: 0 0 28px;
+    }
+    .eyebrow:before { content: ""; width: 28px; height: 1px; background: var(--copper); }
+    h1 {
+      margin: 0; max-width: 690px; color: var(--forest);
+      font-size: clamp(46px, 6.4vw, 78px); line-height: 1.04;
+      letter-spacing: -.065em; font-weight: 570;
+    }
+    .hero-copy {
+      max-width: 570px; margin: 30px 0 0; color: #536159;
+      font-size: 18px; line-height: 1.75;
+    }
+    .hero-actions { display: flex; gap: 22px; align-items: center; margin-top: 38px; }
+    .button {
+      display: inline-flex; justify-content: center; align-items: center; min-height: 50px;
+      padding: 0 22px; background: var(--forest); color: white; text-decoration: none;
+      font-size: 13px; font-weight: 650; border: 1px solid var(--forest);
+      transition: background .2s, color .2s;
+    }
+    .button:hover { background: transparent; color: var(--forest); }
+    .text-link { font-size: 13px; color: var(--forest); text-decoration: none; border-bottom: 1px solid #aab4ad; padding-bottom: 4px; }
+    .hero-art {
+      min-height: 410px; background: var(--forest); border-radius: 4px;
+      display: grid; place-items: center; position: relative; overflow: hidden;
+    }
+    .hero-art:after {
+      content: ""; position: absolute; width: 340px; height: 340px; border: 1px solid rgba(255,255,255,.10);
+      border-radius: 50%;
+    }
+    .hero-symbol { width: min(48%, 210px); position: relative; z-index: 1; }
+    .hero-caption {
+      position: absolute; bottom: 27px; left: 30px; color: rgba(255,255,255,.56);
+      font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    }
+    .intro {
+      background: var(--white); padding: 110px 0;
+    }
+    .section-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 80px; }
+    .section-label { color: var(--copper); font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    h2 {
+      margin: 0; color: var(--forest); font-size: clamp(32px, 4vw, 49px);
+      line-height: 1.13; letter-spacing: -.05em; font-weight: 560;
+    }
+    .intro-text { max-width: 690px; }
+    .intro-text p { margin: 0 0 20px; color: #59665e; font-size: 17px; }
+    .intro-text p.lead { color: var(--forest); font-size: 22px; line-height: 1.5; }
+    .work { padding: 110px 0; }
+    .work-head { max-width: 660px; margin-bottom: 55px; }
+    .work-head .section-label { display: block; margin-bottom: 22px; }
+    .work-head p { color: var(--muted); font-size: 16px; margin: 22px 0 0; }
+    .work-list { border-top: 1px solid var(--line); }
+    .work-item {
+      display: grid; grid-template-columns: 72px 1fr 1fr; gap: 28px;
+      padding: 30px 0; border-bottom: 1px solid var(--line); align-items: start;
+    }
+    .work-number { color: var(--copper); font-size: 12px; letter-spacing: .08em; padding-top: 7px; }
+    .work-item h3 { margin: 0; color: var(--forest); font-size: 21px; font-weight: 570; letter-spacing: -.025em; }
+    .work-item p { margin: 2px 0 0; max-width: 440px; color: var(--muted); font-size: 14px; }
+    .approach { background: #e9ece8; padding: 105px 0; }
+    .approach-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: start; }
+    .approach h2 { max-width: 490px; }
+    .approach-copy { color: #536159; font-size: 16px; }
+    .approach-copy p { margin: 0 0 18px; }
+    .principles { margin-top: 34px; border-top: 1px solid #cbd2cc; }
+    .principle { display: flex; gap: 18px; padding: 15px 0; border-bottom: 1px solid #cbd2cc; font-size: 14px; }
+    .principle strong { min-width: 112px; color: var(--forest); font-weight: 650; }
+    .principle span { color: #647168; }
+    .about { padding: 110px 0; background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 80px; }
+    .about-aside { padding-top: 8px; }
+    .about-aside .section-label { display: block; margin-bottom: 20px; }
+    .about-aside h2 { font-size: clamp(31px, 3.5vw, 43px); }
+    .about-photo { margin: 34px 0 0; max-width: 340px; }
+    .about-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; background: #e9ece8; }
+    .about-photo figcaption { margin-top: 12px; color: var(--muted); font-size: 12px; letter-spacing: .02em; }
+    .about-copy { max-width: 670px; color: #59665e; font-size: 16px; }
+    .about-copy p { margin: 0 0 20px; }
+    .about-copy .signature { color: var(--forest); font-size: 19px; margin-top: 30px; }
+    .rate { background: var(--forest); color: white; padding: 75px 0; }
+    .rate-inner { display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+    .rate h2 { color: white; font-size: clamp(30px, 4vw, 45px); }
+    .rate p { color: rgba(255,255,255,.65); margin: 13px 0 0; max-width: 640px; font-size: 14px; }
+    .contact { padding: 110px 0; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+    .contact h2 { max-width: 480px; }
+    .contact-copy { color: var(--muted); max-width: 470px; font-size: 15px; margin-top: 24px; }
+    .contact-details { border-top: 1px solid var(--line); }
+    .contact-row { padding: 18px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; font-size: 14px; }
+    .contact-row span { color: var(--muted); }
+    .contact-row strong { color: var(--forest); font-weight: 600; text-align: right; }
+    .contact-row strong a { text-decoration: none; border-bottom: 1px solid #aab4ad; }
+    .contact-row strong a:hover { color: var(--copper); border-color: var(--copper); }
+    footer { background: var(--forest); color: rgba(255,255,255,.62); padding: 27px 0; font-size: 11px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; }
+    .footer-brand { color: white; letter-spacing: -.03em; font-size: 14px; }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 36px, var(--max)); }
+      .topbar { height: 72px; }
+      nav { gap: 15px; }
+      nav a:not(.nav-contact) { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-block: 76px 65px; gap: 45px; }
+      h1 { font-size: clamp(45px, 12vw, 68px); }
+      .hero-copy { font-size: 16px; }
+      .hero-art { min-height: 270px; }
+      .intro, .work, .about, .contact { padding: 76px 0; }
+      .section-grid, .approach-inner, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 35px; }
+      .work-item { grid-template-columns: 35px 1fr; gap: 12px 18px; }
+      .work-item p { grid-column: 2; }
+      .about-photo { max-width: 100%; margin-top: 28px; }
+      .approach { padding: 76px 0; }
+      .rate { padding: 60px 0; }
+      .rate-inner { align-items: flex-start; flex-direction: column; gap: 28px; }
+        .footer-inner { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *:before, *:after { transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <header class="wrap topbar">
+    <a class="brand" href="#top" aria-label="Re-forge – úvod">
+      <svg class="mark" viewBox="0 0 100 112" role="img" aria-label="Symbol Re-forge">
+        <path d="M3 108 48 8v100H3Z" fill="#10251f"/>
+        <path d="M53 8 98 108H53V8Z" fill="#bd793b"/>
+        <path d="M50.5 8v100" stroke="#f5f5f3" stroke-width="2"/>
+      </svg>
+      <span class="brand-name">Re-forge</span>
+    </a>
+    <nav aria-label="Hlavní navigace">
+      <a href="#co-resim">S čím pomáhám</a>
+      <a href="#pristup">Přístup</a>
+      <a href="#o-mne">O mně</a>
+      <a class="nav-contact" href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
 
+  <main id="top">
+    <section class="wrap hero">
+      <div>
+        <p class="eyebrow">Osobní přístup. Praktická pomoc.</p>
+        <h1>Když potřebujete věci opravdu posunout.</h1>
+        <p class="hero-copy">Někdy člověk potřebuje zkušenost, nadhled nebo někoho, kdo s ním věci vezme do rukou. Pomáhám lidem a firmám hledat cestu v podnikání, při důležitých rozhodnutích i ve chvílích, kdy se věci zadrhnou.</p>
+        <div class="hero-actions">
+          <a class="button" href="#kontakt">Ozvat se</a>
+          <a class="text-link" href="#co-resim">S čím se na mě můžete obrátit</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Symbol Re-forge">
+        <svg class="hero-symbol" viewBox="0 0 100 112" aria-hidden="true">
+          <path d="M3 108 48 8v100H3Z" fill="#f5f5f3"/>
+          <path d="M53 8 98 108H53V8Z" fill="#bd793b"/>
+          <path d="M50.5 8v100" stroke="#10251f" stroke-width="2"/>
+        </svg>
+        <span class="hero-caption">Re-forge · zkušenost, která pomáhá</span>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="wrap section-grid">
+        <div><span class="section-label">Proč Re-forge</span></div>
+        <div class="intro-text">
+          <p class="lead">Ne každý potřebuje další produkt, prezentaci nebo odbornou studii. Někdy potřebuje hlavně někoho, kdo si vyslechne, co se děje, a pomůže najít rozumný další krok.</p>
+          <p>V nabídce je dnes téměř všechno. Vyznat se v možnostech, poznat, co skutečně dává smysl, a najít správné lidi ale není samozřejmost. Právě s tím pomáhám.</p>
+          <p>Nezačínám hotovým řešením. Nejdřív potřebuji pochopit, co člověk nebo firma skutečně řeší. Pak společně hledáme cestu — a pokud je potřeba, zapojíme další lidi, kteří dané věci rozumějí.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="work wrap" id="co-resim">
+      <div class="work-head">
+        <span class="section-label">S čím se na mě můžete obrátit</span>
+        <h2>Každá situace je jiná. Začít můžeme rozhovorem.</h2>
+        <p>Nemusíte mít připravené zadání ani přesně vědět, co potřebujete. Stačí popsat, co řešíte.</p>
+      </div>
+      <div class="work-list">
+        <article class="work-item">
+          <span class="work-number">01</span>
+          <h3>Podnikání a rozvoj firmy</h3>
+          <p>Rozjezd projektu, změna směru, hledání příležitostí, nastavení spolupráce nebo rozhodnutí, které má dopad na další fungování firmy.</p>
+        </article>
+        <article class="work-item">
+          <span class="work-number">02</span>
+          <h3>Důležitá rozhodnutí</h3>
+          <p>Druhý pohled, hledání možností, porovnání cest a otevřený rozhovor o tom, co je reálné, co dává smysl a na co si dát pozor.</p>
+        </article>
+        <article class="work-item">
+          <span class="work-number">03</span>
+          <h3>Technologie a dodavatelé</h3>
+          <p>Orientace v možnostech, výběr vhodného řešení a lidí, kteří ho dokážou dodat. Od softwaru a hardwaru po praktické zavedení.</p>
+        </article>
+        <article class="work-item">
+          <span class="work-number">04</span>
+          <h3>Projekty, investice a složité situace</h3>
+          <p>Hledání investora, příprava a rozjezd projektu, vyjednávání, propojování potřebných lidí nebo pomoc ve chvíli, kdy se věci nevyvíjejí podle plánu.</p>
+        </article>
+        <article class="work-item">
+          <span class="work-number">05</span>
+          <h3>Když zatím nevíte</h3>
+          <p>I to je v pořádku. Nemusíte svůj problém umět pojmenovat. Probereme ho a uvidíme, jestli a jak vám mohu být užitečný.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="approach" id="pristup">
+      <div class="wrap approach-inner">
+        <div>
+          <span class="section-label">Jak pracuji</span>
+          <h2>Na rovinu. Bez zbytečných vrstev kolem.</h2>
+        </div>
+        <div class="approach-copy">
+          <p>Domluvíme se, co potřebujete a s čím vám mohu pomoci. Řeknu vám otevřeně svůj pohled, možnosti i hranice toho, co umím zajistit.</p>
+          <p>Když se domluvíme na spolupráci, pustíme se do práce. Když bude potřeba někdo další, společně ho najdeme. Pokud pro vás nejsem správný člověk, řeknu vám to.</p>
+          <div class="principles">
+            <div class="principle"><strong>Otevřeně</strong><span>Bez skrytých provizí a nepříjemných překvapení.</span></div>
+            <div class="principle"><strong>Osobně</strong><span>Jednáte přímo s člověkem, který se věci věnuje.</span></div>
+            <div class="principle"><strong>Důsledně</strong><span>Na domluvě záleží. Co slíbím, to platí.</span></div>
+            <div class="principle"><strong>S pokorou</strong><span>Neznám všechny odpovědi. Umím ale hledat ty správné.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="wrap about-grid" id="o-mne">
+        <div class="about-aside">
+          <span class="section-label">Kdo za tím stojí</span>
+          <h2>Zkušenost není o tom, že člověk nikdy neudělal chybu.</h2>
+          <figure class="about-photo">
+            <img src="data:image/jpeg;base64,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
